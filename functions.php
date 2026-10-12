@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
    GitHub auto-updates via plugin-update-checker
 ---------------------------------------------------------- */
 require get_template_directory() . '/inc/plugin-update-checker/plugin-update-checker.php';
-$gologic_media_update_checker = Puc_v4_Factory::buildUpdateChecker(
+$gologic_media_update_checker = \YahnisElsts\PluginUpdateChecker\v5p7\PucFactory::buildUpdateChecker(
     'https://github.com/rickrms/gologic-media-theme/',
     get_template_directory() . '/functions.php',
     'gologic-media-theme'
