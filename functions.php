@@ -11,6 +11,18 @@
 
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
+/* ----------------------------------------------------------
+   GitHub auto-updates via plugin-update-checker
+---------------------------------------------------------- */
+require get_template_directory() . '/inc/plugin-update-checker/plugin-update-checker.php';
+$gologic_media_update_checker = Puc_v4_Factory::buildUpdateChecker(
+    'https://github.com/rickrms/gologic-media-theme/',
+    get_template_directory() . '/functions.php',
+    'gologic-media-theme'
+);
+$gologic_media_update_checker->setBranch('main');
+
+
 define( 'GOLOGIC_MEDIA_VERSION', '2.0.0' );
 define( 'GOLOGIC_MEDIA_PHONE', '201-530-0372' );
 define( 'GOLOGIC_MEDIA_PHONE_LINK', 'tel:+12015300372' );
