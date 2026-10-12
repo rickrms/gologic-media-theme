@@ -1,0 +1,621 @@
+/*
+Theme Name: GoLogic Media
+Theme URI: https://gologicmedia.com/
+Author: GoLogic
+Author URI: https://gologicmedia.com/
+Description: Custom light theme for GoLogic Media — digital agency for small business. SEO, web design, web hosting. Oracle-style clean design: white backgrounds, navy headings, orange accents. Gutenberg-compatible, no page builders required.
+Version: 2.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: gologic-media
+Tags: light, white, clean, business, marketing, responsive, custom-colors, custom-menu, featured-images
+*/
+
+/* ============================================================
+   GOLOGIC MEDIA — DESIGN TOKENS
+   Change the palette for the whole site right here.
+   ============================================================ */
+:root {
+  --gologic-orange:      #e56b21;
+  --gologic-orange-dark: #c85a18;
+  --gologic-orange-soft: #fdf1e7;
+  --gologic-navy:        #112d4e;
+  --gologic-navy-soft:   #eef2f7;
+  --gologic-gray:        #757270;
+  --gologic-white:       #ffffff;
+  --gologic-light:       #f7f8fa;
+  --gologic-border:      #e8eaed;
+  --gologic-text:        #2b2b2b;
+  --gologic-text-soft:   #5a5a5a;
+  --gologic-radius:      10px;
+  --gologic-shadow:      0 4px 24px rgba(17, 45, 78, 0.08);
+  --gologic-font:        'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--gologic-font);
+  color: var(--gologic-text);
+  background: var(--gologic-white);
+  line-height: 1.7;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--gologic-navy);
+  line-height: 1.25;
+  margin-top: 0;
+  font-weight: 700;
+}
+
+h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); letter-spacing: -0.01em; }
+h3 { font-size: 1.35rem; }
+
+p { margin: 0 0 1.1em; color: var(--gologic-text-soft); }
+
+a { color: var(--gologic-orange); text-decoration: none; }
+a:hover { color: var(--gologic-orange-dark); }
+
+img { max-width: 100%; height: auto; }
+
+.gologic-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.gologic-section { padding: 90px 0; }
+.gologic-section--light { background: var(--gologic-light); }
+.gologic-section--white { background: var(--gologic-white); }
+
+.gologic-eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gologic-orange);
+  margin-bottom: 14px;
+}
+
+.gologic-section-title { text-align: center; max-width: 720px; margin: 0 auto 54px; }
+.gologic-section-title p { font-size: 1.1rem; }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.gologic-btn,
+.wp-block-button__link {
+  display: inline-block;
+  font-family: var(--gologic-font);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 15px 34px;
+  border-radius: 8px;
+  border: 2px solid var(--gologic-orange);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.gologic-btn--primary,
+.wp-block-button__link {
+  background: var(--gologic-orange);
+  color: #fff !important;
+  box-shadow: 0 6px 18px rgba(229, 107, 33, 0.28);
+}
+.gologic-btn--primary:hover,
+.wp-block-button__link:hover {
+  background: var(--gologic-orange-dark);
+  border-color: var(--gologic-orange-dark);
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+.gologic-btn--outline {
+  background: transparent;
+  color: var(--gologic-navy) !important;
+  border-color: var(--gologic-navy);
+}
+.gologic-btn--outline:hover {
+  background: var(--gologic-navy);
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+.gologic-btn--white {
+  background: #fff;
+  border-color: #fff;
+  color: var(--gologic-navy) !important;
+}
+.gologic-btn--white:hover { transform: translateY(-2px); color: var(--gologic-navy) !important; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.gologic-header {
+  background: var(--gologic-white);
+  border-bottom: 1px solid var(--gologic-border);
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+.gologic-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Text wordmark: GOLOGIC (orange GO + navy LOGIC), MEDIA gray below */
+.gologic-logo { line-height: 1; text-decoration: none; display: inline-block; text-align: center; }
+.gologic-logo:hover { text-decoration: none; }
+.gologic-logo-main {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  font-size: 1.65rem;
+  letter-spacing: 0.04em;
+  display: block;
+}
+.gologic-logo-main .go { color: var(--gologic-orange); }
+.gologic-logo-main .logic { color: var(--gologic-navy); }
+.gologic-logo-sub {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.42em;
+  color: var(--gologic-gray);
+  margin-top: 3px;
+  text-align: center;
+}
+
+.gologic-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 34px;
+  align-items: center;
+}
+.gologic-nav a {
+  color: var(--gologic-navy);
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+.gologic-nav a:hover { color: var(--gologic-orange); }
+
+.gologic-header-actions { display: flex; align-items: center; gap: 18px; }
+.gologic-header-phone {
+  font-weight: 700;
+  color: var(--gologic-navy);
+  font-size: 1.02rem;
+  white-space: nowrap;
+}
+.gologic-header-phone:hover { color: var(--gologic-orange); }
+.gologic-header .gologic-btn { padding: 11px 24px; font-size: 0.92rem; }
+
+.gologic-menu-toggle {
+  display: none;
+  background: none;
+  border: 2px solid var(--gologic-navy);
+  border-radius: 8px;
+  width: 48px;
+  height: 44px;
+  cursor: pointer;
+  position: relative;
+}
+.gologic-menu-toggle span,
+.gologic-menu-toggle span::before,
+.gologic-menu-toggle span::after {
+  display: block;
+  background: var(--gologic-navy);
+  height: 3px;
+  width: 22px;
+  border-radius: 2px;
+  position: absolute;
+  left: 11px;
+  transition: 0.2s;
+}
+.gologic-menu-toggle span { top: 19px; }
+.gologic-menu-toggle span::before { content: ''; top: -8px; left: 0; position: absolute; }
+.gologic-menu-toggle span::after { content: ''; top: 8px; left: 0; position: absolute; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.gologic-hero {
+  background: var(--gologic-white);
+  padding: 110px 0 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.gologic-hero::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 420px; height: 420px;
+  background: radial-gradient(circle, var(--gologic-orange-soft) 0%, transparent 70%);
+  pointer-events: none;
+}
+.gologic-hero h1 { max-width: 820px; margin: 0 auto 22px; }
+.gologic-hero h1 .accent { color: var(--gologic-orange); }
+.gologic-hero .gologic-lead {
+  font-size: 1.2rem;
+  max-width: 680px;
+  margin: 0 auto 38px;
+}
+.gologic-hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.gologic-hero-note { margin-top: 26px; font-size: 0.92rem; color: var(--gologic-gray); }
+
+/* Trust strip */
+.gologic-trust {
+  border-top: 1px solid var(--gologic-border);
+  border-bottom: 1px solid var(--gologic-border);
+  background: var(--gologic-light);
+  padding: 26px 0;
+  text-align: center;
+}
+.gologic-trust p { margin: 0; font-size: 0.95rem; font-weight: 600; color: var(--gologic-navy); letter-spacing: 0.02em; }
+.gologic-trust .dot { color: var(--gologic-orange); margin: 0 12px; }
+
+/* ============================================================
+   SERVICES GRID
+   ============================================================ */
+.gologic-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.gologic-service-card {
+  background: var(--gologic-white);
+  border: 1px solid var(--gologic-border);
+  border-radius: var(--gologic-radius);
+  padding: 38px 32px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.gologic-service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--gologic-shadow);
+  border-color: var(--gologic-orange);
+}
+.gologic-service-icon {
+  width: 58px; height: 58px;
+  border-radius: 14px;
+  background: var(--gologic-orange-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.7rem;
+  margin-bottom: 20px;
+}
+.gologic-service-card h3 { margin-bottom: 10px; font-size: 1.22rem; }
+.gologic-service-card p { font-size: 0.97rem; margin-bottom: 16px; }
+.gologic-service-card .gologic-learn-more {
+  font-weight: 700; font-size: 0.92rem;
+}
+
+/* ============================================================
+   WHY GOLOGIC
+   ============================================================ */
+.gologic-why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 10px;
+}
+.gologic-why-item { text-align: center; padding: 10px 18px; }
+.gologic-why-number {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--gologic-orange);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.gologic-why-item h3 { margin-bottom: 10px; }
+
+/* ============================================================
+   PROCESS STEPS
+   ============================================================ */
+.gologic-process {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  counter-reset: step;
+}
+.gologic-process-step {
+  background: var(--gologic-white);
+  border: 1px solid var(--gologic-border);
+  border-top: 5px solid var(--gologic-orange);
+  border-radius: var(--gologic-radius);
+  padding: 36px 30px;
+  text-align: center;
+}
+.gologic-process-step .step-num {
+  display: inline-flex;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--gologic-navy);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.3rem;
+  align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+
+/* ============================================================
+   AI SPOTLIGHT
+   ============================================================ */
+.gologic-ai-spotlight { text-align: center; }
+.gologic-ai-graphic {
+  max-width: 860px;
+  margin: 0 auto 40px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--gologic-shadow);
+  border: 1px solid var(--gologic-border);
+  background: var(--gologic-navy-soft);
+  min-height: 320px;
+  display: flex; align-items: center; justify-content: center;
+}
+.gologic-ai-graphic img { display: block; width: 100%; height: auto; }
+.gologic-ai-graphic .placeholder {
+  padding: 60px 30px;
+  color: var(--gologic-gray);
+  font-size: 0.95rem;
+}
+.gologic-ai-copy { max-width: 720px; margin: 0 auto; }
+.gologic-ai-points {
+  display: flex; gap: 18px; justify-content: center;
+  flex-wrap: wrap; margin-top: 30px;
+}
+.gologic-ai-point {
+  background: var(--gologic-white);
+  border: 1px solid var(--gologic-border);
+  border-radius: 30px;
+  padding: 10px 22px;
+  font-weight: 600; font-size: 0.92rem;
+  color: var(--gologic-navy);
+}
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.gologic-testimonial {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--gologic-white);
+  border: 1px solid var(--gologic-border);
+  border-radius: 16px;
+  padding: 48px 52px;
+  text-align: center;
+  box-shadow: var(--gologic-shadow);
+}
+.gologic-testimonial .stars { color: var(--gologic-orange); font-size: 1.3rem; letter-spacing: 4px; margin-bottom: 18px; }
+.gologic-testimonial blockquote {
+  margin: 0 0 20px;
+  font-size: 1.22rem;
+  color: var(--gologic-navy);
+  font-weight: 500;
+  line-height: 1.6;
+}
+.gologic-testimonial cite { font-style: normal; color: var(--gologic-gray); font-size: 0.95rem; font-weight: 600; }
+
+/* ============================================================
+   FINAL CTA
+   ============================================================ */
+.gologic-final-cta {
+  background: var(--gologic-navy-soft);
+  border-top: 1px solid var(--gologic-border);
+  border-bottom: 1px solid var(--gologic-border);
+  text-align: center;
+  padding: 90px 0;
+}
+.gologic-final-cta h2 { margin-bottom: 16px; }
+.gologic-final-cta p { max-width: 600px; margin: 0 auto 34px; font-size: 1.08rem; }
+.gologic-final-cta .gologic-phone-big {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--gologic-navy);
+  margin-bottom: 30px;
+  letter-spacing: 0.02em;
+}
+.gologic-final-cta .gologic-phone-big:hover { color: var(--gologic-orange); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.gologic-footer {
+  background: var(--gologic-white);
+  border-top: 1px solid var(--gologic-border);
+  padding: 64px 0 0;
+}
+.gologic-footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+.gologic-footer h4 {
+  color: var(--gologic-navy);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 18px;
+}
+.gologic-footer ul { list-style: none; margin: 0; padding: 0; }
+.gologic-footer ul li { margin-bottom: 10px; }
+.gologic-footer ul a { color: var(--gologic-text-soft); font-size: 0.95rem; }
+.gologic-footer ul a:hover { color: var(--gologic-orange); }
+.gologic-footer p { font-size: 0.95rem; }
+.gologic-footer-phone { font-size: 1.25rem; font-weight: 800; color: var(--gologic-navy) !important; }
+.gologic-footer-phone:hover { color: var(--gologic-orange) !important; }
+.gologic-footer-bottom {
+  border-top: 1px solid var(--gologic-border);
+  padding: 22px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.gologic-footer-bottom p { margin: 0; font-size: 0.85rem; color: var(--gologic-gray); }
+
+/* ============================================================
+   BLOG / CONTENT
+   ============================================================ */
+.gologic-content { padding: 70px 0; }
+.gologic-content .gologic-wrap { max-width: 820px; }
+.gologic-post-list { display: grid; gap: 32px; margin-top: 40px; }
+.gologic-post-card {
+  border: 1px solid var(--gologic-border);
+  border-radius: var(--gologic-radius);
+  padding: 36px;
+  background: #fff;
+}
+.gologic-post-card h2 { font-size: 1.5rem; margin-bottom: 8px; }
+.gologic-post-card h2 a { color: var(--gologic-navy); }
+.gologic-post-card h2 a:hover { color: var(--gologic-orange); }
+.gologic-post-meta { font-size: 0.85rem; color: var(--gologic-gray); margin-bottom: 14px; }
+
+/* ============================================================
+   CHATBOT WIDGET
+   ============================================================ */
+#gologic-chat-btn {
+  position: fixed;
+  bottom: 26px; right: 26px;
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--gologic-orange);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 26px rgba(229, 107, 33, 0.45);
+  z-index: 9998;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.15s ease;
+}
+#gologic-chat-btn:hover { transform: scale(1.08); }
+#gologic-chat-btn svg { width: 30px; height: 30px; fill: #fff; }
+#gologic-chat-btn .gologic-chat-close-icon { display: none; }
+#gologic-chat-btn.open .gologic-chat-open-icon { display: none; }
+#gologic-chat-btn.open .gologic-chat-close-icon { display: block; }
+
+#gologic-chat-panel {
+  position: fixed;
+  bottom: 104px; right: 26px;
+  width: 360px; max-width: calc(100vw - 40px);
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 18px 60px rgba(17, 45, 78, 0.22);
+  z-index: 9999;
+  overflow: hidden;
+  transform: translateY(18px) scale(0.97);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.22s ease;
+  border: 1px solid var(--gologic-border);
+}
+#gologic-chat-panel.open {
+  transform: none; opacity: 1; pointer-events: auto;
+}
+.gologic-chat-header {
+  background: var(--gologic-navy);
+  color: #fff;
+  padding: 22px 24px;
+}
+.gologic-chat-header h3 { color: #fff; margin: 0 0 4px; font-size: 1.15rem; }
+.gologic-chat-header p { color: rgba(255,255,255,0.75); margin: 0; font-size: 0.88rem; }
+.gologic-chat-body { padding: 26px 24px; text-align: center; }
+.gologic-chat-phone-label { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gologic-gray); margin-bottom: 6px; }
+.gologic-chat-phone {
+  display: block;
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--gologic-navy);
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+.gologic-chat-phone:hover { color: var(--gologic-orange); }
+.gologic-chat-sub { font-size: 0.9rem; margin-bottom: 20px; }
+#gologic-chat-panel .gologic-btn { width: 100%; margin-bottom: 10px; }
+.gologic-chat-form { display: none; text-align: left; margin-top: 6px; }
+.gologic-chat-form.show { display: block; }
+.gologic-chat-form label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--gologic-navy); margin: 12px 0 5px; }
+.gologic-chat-form input, .gologic-chat-form textarea {
+  width: 100%;
+  border: 1.5px solid var(--gologic-border);
+  border-radius: 8px;
+  padding: 11px 13px;
+  font-family: var(--gologic-font);
+  font-size: 0.95rem;
+}
+.gologic-chat-form input:focus, .gologic-chat-form textarea:focus {
+  outline: none;
+  border-color: var(--gologic-orange);
+}
+.gologic-chat-form textarea { min-height: 84px; resize: vertical; }
+.gologic-chat-success { display: none; padding: 18px 0 6px; }
+.gologic-chat-success.show { display: block; }
+.gologic-chat-success p { color: var(--gologic-navy); font-weight: 600; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .gologic-services-grid { grid-template-columns: repeat(2, 1fr); }
+  .gologic-why-grid, .gologic-process { grid-template-columns: 1fr; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .gologic-footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 860px) {
+  .gologic-menu-toggle { display: block; }
+  .gologic-nav {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--gologic-border);
+    box-shadow: 0 18px 30px rgba(17,45,78,0.10);
+  }
+  .gologic-nav.toggled { display: block; }
+  .gologic-nav ul { flex-direction: column; align-items: stretch; gap: 0; padding: 10px 24px 20px; }
+  .gologic-nav ul li { border-top: 1px solid var(--gologic-border); }
+  .gologic-nav ul li a { display: block; padding: 13px 0; }
+  .gologic-header-phone { display: none; }
+  .gologic-header .gologic-btn { display: none; }
+}
+
+@media (max-width: 640px) {
+  .gologic-section { padding: 64px 0; }
+  .gologic-hero { padding: 70px 0 64px; }
+  .gologic-services-grid { grid-template-columns: 1fr; }
+  .gologic-footer-grid { grid-template-columns: 1fr; gap: 30px; }
+  .gologic-testimonial { padding: 34px 26px; }
+  .gologic-final-cta .gologic-phone-big { font-size: 1.5rem; }
+  #gologic-chat-panel { bottom: 100px; right: 16px; }
+  #gologic-chat-btn { bottom: 20px; right: 16px; }
+}
+
+/* WordPress alignment helpers */
+.alignwide { max-width: 1400px; margin-left: auto; margin-right: auto; }
+.alignfull { max-width: none; }
+
+
+.gologic-hero-cover { margin-top: 0; }
+.gologic-hero-cover .gologic-eyebrow { color: #fff; opacity: 0.9; }
+.gologic-hero-cover h1 { text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
